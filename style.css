@@ -1,0 +1,131 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    background-color: #14BDAC;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    gap: 5rem;
+}
+.tabuleiro{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.quadrado{
+    width: 7rem;
+    height: 7rem;
+    border: 0.2rem solid #0DA192;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+}
+.title-tabuleiro{
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    
+}
+
+#q1 {
+    border-width: 0rem 0.2rem 0.2rem 0rem;
+}
+
+#q2 {
+    border-width: 0rem 0.2rem 0.2rem 0.2rem;
+}
+
+#q3 {
+    border-width: 0rem 0rem 0.2rem 0.2rem;
+}
+
+#q4 {
+    border-width: 0.2rem 0.2rem 0.2rem 0rem;
+}
+
+
+#q6 {
+  border-width: 0.2rem 0rem 0.2rem 0.2rem;
+}
+
+#q7 {
+    border-width: 0.2rem 0.2rem 0rem 0rem;
+}
+
+#q8 {
+    border-width: 0.2rem 0.2rem 0rem 0.2rem;
+}
+
+#q9 {
+    border-width: 0.2rem 0rem 0rem 0.2rem;
+}
+
+.opcoes {
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #0DA192;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #0b8a7d;
+}
+
+button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#player1 {
+    appearance: none;
+    background-color: #0DA192;
+    width: 4rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#player2 {
+    appearance: none;
+    background-color: #0DA192;
+    width: 4rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-align:center;
+}
+
+#player1:hover {
+border: solid 1px #fff;
+}
+
+#player2:hover {
+border: solid 1px #fff;
+}
+
+#playX {
+    text-align: left; 
+}
+
+#playY {
+    text-align: right; 
+}

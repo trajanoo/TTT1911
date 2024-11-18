@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha Turbinado</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="./main.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="title">Jogo Da Velha Turbinado</h1>
+    
+    <main>
+        <section class="escolher-personagens">
+            <label for="player">Escolha o primeiro Jogador</label>
+            <select name="" id="player1">
+                <option value="x">X</option>
+                <option value="gremio">GRÊMIO</option>
+            </select>
+            <br>
+            <br>
+            <label for="player">Escolha o segundo Jogador</label>
+            <select name="" id="player2">
+                <option value="o">O</option>
+                <option value="inter">INTER</option>
+            </select>
+            <br>
+            <br>
+        </section>
+        <section class="title-tabuleiro">
+            <div id="playX" class="playerA">
+                <h1>PLAYER X - 0</h1>
+            </div>
+            <div class="playerVez">
+                <p>Vez de X</p>
+            </div>
+            <div id="playY" class="playerB">
+                
+                <h1>PLAYER O - 0</h1>
+            </div>
+        </section>
+        <section class="tabuleiro">
+            <div id="q1" class="quadrado"></div>
+            <div id="q2" class="quadrado"></div>
+            <div id="q3" class="quadrado"></div>
+            <div id="q4" class="quadrado"></div>
+            <div id="q5" class="quadrado"></div>
+            <div id="q6" class="quadrado"></div>
+            <div id="q7" class="quadrado"></div>
+            <div id="q8" class="quadrado"></div>
+            <div id="q9" class="quadrado"></div>
+        </section>
+        <div class="opcoes">
+        <a href="/step2/index.html"><button>Avançar</button></a>
+        <button id="btnResetar">Resetar</button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Criado por Arthur Juwer, Bruno Trajano, Gabriel Longoni, Pedro Menezes</p>
+    </footer>
+</body>
+</html>

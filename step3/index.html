@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha Turbinado</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="./main.js" defer></script>
+</head>
+<body>
+    <h1 class="title">Jogo Da Velha Turbinado</h1>
+    <main>
+        <section class="escolher-personagens">
+            <label for="player">Escolha o primeiro Jogador</label>
+            <select name="" id="player1">
+                <option value="x">X</option>
+                <option value="gremio">GREMIO</option>
+            </select>
+            <br>
+            <br>
+            <label for="player">Escolha o segundo Jogador</label>
+            <select name="" id="player2">
+                <option value="o">O</option>
+                <option value="inter">INTER</option>
+            </select>
+            <br>
+            <br>
+        </section>
+        <section class="title-tabuleiro">
+            <div class="playerA">
+                <h1>PLAYER X - 0</h1>
+            </div>
+            <div class="playerVez">
+                <p>Vez de X</p>
+            </div>
+            <div class="playerB">
+                <h1>PLAYER O - 0</h1>
+            </div>
+        </section>
+        <section class="tabuleiro">
+            <div id="q1" class="quadrado"></div>
+            <div id="q2" class="quadrado"></div>
+            <div id="q3" class="quadrado"></div>
+            <div id="q4" class="quadrado"></div>
+            <div id="q5" class="quadrado"></div>
+            <div id="q6" class="quadrado"></div>
+            <div id="q7" class="quadrado"></div>
+            <div id="q8" class="quadrado"></div>
+            <div id="q9" class="quadrado"></div>
+        </section>
+        <section class="timer-tabuleiro">
+            <p>00: 00</p>
+        </section>
+        <button><a href="../step4/index.html">Avançar</a></button>
+        <button id="btnResetar">Resetar</button>
+    </main>
+    <section class="cards-tabuleiro">
+        <button id="inversao">🔄 Célula de Inversão: Inverte todos os X e O no tabuleiro.</button>
+        <button id="bloqueada">🚫 Célula Bloqueada: Fica indisponível por uma rodada.</button>
+        <button id="poder">⚡ Célula de Poder: Permite que o jogador faça duas jogadas consecutivas.</button>
+    </section>
+    <footer>
+        <p>Criado por Arthur Juwer, Bruno Trajano, Gabriel Longoni, Pedro Menezes</p>
+    </footer>
+</body>
+</html>
