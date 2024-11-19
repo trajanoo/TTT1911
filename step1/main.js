@@ -1,3 +1,6 @@
+
+const audioGremio = new Audio('../hinoGremio.mp3');
+const audioInter = new Audio('../hinoInter.mp3');
 const quadrados = document.querySelectorAll('.quadrado');
 const textoVezAtual = document.querySelector('.title-tabuleiro p');
 const main = document.querySelector("main")
@@ -113,8 +116,17 @@ function atualizarTabuleiro(vencedor){
 
     if(vencedor == 'X'){
         playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toString().toUpperCase()} - ${pontuacaoPlayerA+=1}</h1>`
+
     } else {
         playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toString().toUpperCase()} - ${pontuacaoPlayerB+=1}</h1>`
     }
+    if(vencedor === 'gremio') {
+        playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toString().toUpperCase()} - ${pontuacaoPlayerA+=1}</h1>`
+        playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toString().toUpperCase()} - ${pontuacaoPlayerB-=1}</h1>`
+            audioGremio.play()
+    } else if (vencedor === 'inter') {
+        audioInter.play()
+    }
+    
 }
 
