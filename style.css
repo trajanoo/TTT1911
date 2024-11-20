@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+.escolher-personagens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body{
     display: flex;
     font-family: "Poppins", sans-serif;
@@ -17,6 +23,7 @@ body{
 }
 .tabuleiro{
     display: grid;
+    margin: 0rem 46rem;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
@@ -28,13 +35,21 @@ body{
     background-repeat: no-repeat;
     background-size: 75%;
 }
+
+.quadrado:hover {
+    background-color: #0b8a7d;
+}
 .title-tabuleiro{
     align-items: center;
     width: 100%;
     text-align: center;
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 40rem;
     
 }
+
 
 #q1 {
     border-width: 0rem 0.2rem 0.2rem 0rem;
@@ -75,13 +90,22 @@ body{
     justify-content: center ;
 }
 
-button {
-    padding: 10px 20px;
+.opcoes button {
     margin: 20px;
     background-color: #0DA192;
     color: #fff;
     border: none;
+    padding: 10px 20px;
     border-radius: 10px;
+    transition: 0.2s;
+}
+
+.cards-tabuleiro button {
+    background-color: #0DA192;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
     transition: 0.2s;
 }
 
@@ -92,6 +116,12 @@ button:hover {
 button a {
     text-decoration: none;
     color: #fff;
+}
+
+.playerVez {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #player1 {
@@ -120,12 +150,4 @@ border: solid 1px #fff;
 
 #player2:hover {
 border: solid 1px #fff;
-}
-
-#playX {
-    text-align: left; 
-}
-
-#playY {
-    text-align: right; 
 }

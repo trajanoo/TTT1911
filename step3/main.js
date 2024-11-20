@@ -1,6 +1,10 @@
 const quadrados = document.querySelectorAll('.quadrado');
 const textoVezAtual = document.querySelector('.title-tabuleiro p');
 const main = document.querySelector("main");
+const audioGremio = new Audio('../hinoGremio.mp3');
+const audioInter = new Audio('../hinoInter.mp3');
+const timerPlayerA = document.querySelector('#timerPlayerA');
+const timerPlayerB = document.querySelector('#timerPlayerB');
 
 let jogoEncerrado = false;
 let tempoSegundos = 10;
@@ -16,6 +20,8 @@ let imagePlayer2 = player2.value;
 
 player1.addEventListener('change', function(event) {
     imagePlayer1 = event.target.value;
+    const playerATimer = document.querySelector("timerA").outerHTML;
+    playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toUpperCase()} - ${pontuacaoPlayerA}</h1>` + playerATimer; // Reinsere o timer
     tempoSegundos = 10
     textoVezAtual.innerText = vezAtual === 1 ? `Vez de ${imagePlayer1.toString().toUpperCase()}` : `Vez de ${imagePlayer2.toString().toUpperCase()}`;
     botaoInversao.innerText = `🔄 Célula de Inversão: Inverte todos os ${imagePlayer1.toString().toUpperCase()} e ${imagePlayer2.toString().toUpperCase()} no tabuleiro.`
@@ -25,6 +31,8 @@ player1.addEventListener('change', function(event) {
 
 player2.addEventListener('change', function(event) {
     imagePlayer2 = event.target.value;
+    const playerBTimer = document.querySelector("#timerB").outerHTML; // Salva o timer atual
+    playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toUpperCase()} - ${pontuacaoPlayerB}</h1>` + playerBTimer; // Reinsere o timer
     tempoSegundos = 10
     textoVezAtual.innerText = vezAtual === 1 ? `Vez de ${imagePlayer1.toString().toUpperCase()}` : `Vez de ${imagePlayer2.toString().toUpperCase()}`;
     botaoInversao.innerText = `🔄 Célula de Inversão: Inverte todos os ${imagePlayer1.toString().toUpperCase()} e ${imagePlayer2.toString().toUpperCase()} no tabuleiro.`
@@ -129,20 +137,23 @@ for (let i = 0; i < quadrados.length; i++) {
 
 const timerText = document.querySelector(".timer-tabuleiro")
     
-function startTime(){
-
-    if(tempoSegundos == -1){
-        if(vezAtual == 1){
-            vezAtual = 2
-            textoVezAtual.innerText = `Vez de ${imagePlayer2.toString().toUpperCase()}`;
+function startTime() {
+    if (tempoSegundos === -1) {
+        if (vezAtual === 1) {
+            vezAtual = 2;
+            textoVezAtual.innerText = `Vez de ${imagePlayer2.toUpperCase()}`;
+            timerPlayerB.style.display = "block";
+            timerPlayerA.style.display = "none";
         } else {
-            vezAtual = 1
-            textoVezAtual.innerText = `Vez de ${imagePlayer1.toString().toUpperCase()}`;
+            vezAtual = 1;
+            textoVezAtual.innerText = `Vez de ${imagePlayer1.toUpperCase()}`;
+            timerPlayerA.style.display = "block";
+            timerPlayerB.style.display = "none";
         }
-        tempoSegundos = 10
+        tempoSegundos = 10;
     }
-    timerText.innerHTML = `00: 0${tempoSegundos}`
-    
+    const currentTimer = vezAtual === 1 ? timerPlayerA : timerPlayerB;
+    currentTimer.querySelector('p').innerText = `00:${tempoSegundos < 10 ? "0" : ""}${tempoSegundos}`;
 }
 
 
@@ -181,15 +192,11 @@ botaoPoder.addEventListener("click", () => {
 const botaoResetar = document.querySelector("#btnResetar").addEventListener("click", reiniciarJogo)
 
 function reiniciarJogo() {
-    jogoEncerrado = false;
     vezAtual = 1;
-    textoVezAtual.innerText = 'Vez de X';
-    tempoSegundos = 10
-
-    for (let r = 0; r < quadrados.length; r++) {
-        quadrados[r].style.background = ''; 
-        quadrados[r].classList.remove('bloqueado', 'jogado'); 
-    }
+    tempoSegundos = 10;
+    jogoEncerrado = false;
+    textoVezAtual.innerText = `Vez de ${imagePlayer1.toUpperCase()}`;
+    quadrados.forEach(quadrado => quadrado.style.background = '');
 }
 
 const playerA = document.querySelector(".playerA")
@@ -205,10 +212,17 @@ function atualizarTabuleiro(vencedor){
     } else {
         playerB.innerHTML = `<h1>PLAYER B - ${pontuacaoPlayerB+=1}</h1>`
     }
+    
+    if(vencedor === 'gremio') {
+        playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toString().toUpperCase()} - ${pontuacaoPlayerA+=0}</h1>`
+            audioGremio.play()
+    } else if (vencedor === 'inter') {
+        audioInter.play()
+    }
 }
 
 setInterval(() => {
-    if(jogoEncerrado != true){
+    if(!jogoEncerrado){
         tempoSegundos-=1
         startTime()
     }

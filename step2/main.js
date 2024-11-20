@@ -1,5 +1,9 @@
+const timerPlayerA = document.querySelector('#timerPlayerA')
+const timerPlayerB = document.querySelector('#timerPlayerB')
+const audioGremio = new Audio('../hinoGremio.mp3');
+const audioInter = new Audio('../hinoInter.mp3');
 const quadrados = document.querySelectorAll('.quadrado');
-const textoVezAtual = document.querySelector('.title-tabuleiro p');
+const textoVezAtual = document.querySelector('.playerVez p');
 const main = document.querySelector("main");
 
 let jogoEncerrado = false;
@@ -15,14 +19,14 @@ let imagePlayer2 = player2.value;
 
 player1.addEventListener('change', function(event) {
     imagePlayer1 = event.target.value;
-    playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toUpperCase()} - ${pontuacaoPlayerA}</h1>`;
-    playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toUpperCase()} - ${pontuacaoPlayerB}</h1>`;
+    const playerATimer = document.querySelector("timerA").outerHTML;
+    playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toUpperCase()} - ${pontuacaoPlayerA}</h1>` + playerATimer; // Reinsere o timer
 });
 
 player2.addEventListener('change', function(event) {
     imagePlayer2 = event.target.value;
-    playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toUpperCase()} - ${pontuacaoPlayerA}</h1>`;
-    playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toUpperCase()} - ${pontuacaoPlayerB}</h1>`;
+    const playerBTimer = document.querySelector("#timerB").outerHTML; // Salva o timer atual
+    playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toUpperCase()} - ${pontuacaoPlayerB}</h1>` + playerBTimer; // Reinsere o timer
 });
 
 function verificarVitoria() {
@@ -63,9 +67,11 @@ for (let i = 0; i < quadrados.length; i++) {
                 alert("Escolha outra posição");
             } else {
                 e.target.style.backgroundImage = `url('../images/${imagePlayer1}.png')`;
-                vezAtual++;
+                vezAtual = 2;
                 textoVezAtual.innerText = `Vez de ${imagePlayer2.toUpperCase()}`;
                 tempoSegundos = 10;
+                timerPlayerA.style.display = "none";
+                timerPlayerB.style.display = "block";
                 verificarVitoria();
             }
         } else {
@@ -76,6 +82,8 @@ for (let i = 0; i < quadrados.length; i++) {
                 vezAtual--;
                 textoVezAtual.innerText = `Vez de ${imagePlayer1.toUpperCase()}`;
                 tempoSegundos = 10;
+                timerPlayerB.style.display = "none";
+                timerPlayerA.style.display = "block";
                 verificarVitoria();
             }
         }
@@ -89,13 +97,19 @@ function startTime(){
         if(vezAtual == 1){
             vezAtual = 2;
             textoVezAtual.innerText = `Vez de ${imagePlayer2.toUpperCase()}`;
+            timerPlayerB.style.display = "block";
+            timerPlayerA.style.display = "none"
+            
         } else {
             vezAtual = 1;
             textoVezAtual.innerText = `Vez de ${imagePlayer1.toUpperCase()}`;
+            timerPlayerA.style.display = "block";
+            timerPlayerB.style.display = "none"
         }
         tempoSegundos = 10;
     }
-    timerText.innerHTML = `00: 0${tempoSegundos}`;
+    const currentTimer = vezAtual === 1 ? timerPlayerA : timerPlayerB;
+    currentTimer.querySelector('p').innerText = `00: ${tempoSegundos < 10 ? "0" : ""}${tempoSegundos}`;
 }
 
 const botaoResetar = document.querySelector("#btnResetar").addEventListener("click", reiniciarJogo);
@@ -122,6 +136,13 @@ function atualizarTabuleiro(vencedor){
     } else {
         pontuacaoPlayerB++;
         playerB.innerHTML = `<h1>PLAYER ${imagePlayer2.toUpperCase()} - ${pontuacaoPlayerB}</h1>`;
+    }
+    
+    if(vencedor === 'gremio') {
+        playerA.innerHTML = `<h1>PLAYER ${imagePlayer1.toString().toUpperCase()} - ${pontuacaoPlayerA+=0}</h1>`
+            audioGremio.play()
+    } else if (vencedor === 'inter') {
+        audioInter.play()
     }
 }
 
